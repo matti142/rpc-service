@@ -1,0 +1,15 @@
+
+node_modules/
+npm-debug.log
+
+.nodejs
+.project
+.classpath
+.pmd
+.checkstyle
+.idea
+*.iml
+.DS_Store
+*.sublime-*
+.temp/
+target/
