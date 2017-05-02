@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 16);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -153,16 +153,33 @@ var ServiceStub = exports.ServiceStub = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var Type = {
+var Type = exports.Type = {
   SERVER: 'SERVER',
   CLIENT: 'CLIENT'
 };
 
-exports.default = Type;
-
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var Status = exports.Status = {
+  METHOD_NOT_FOUND: 'METHOD_NOT_FOUND',
+  METHOD_SUCCESS: 'METHOD_SUCCESS',
+  METHOD_ERROR: 'METHOD_ERROR',
+  METHOD_ASYNC: 'METHOD_ASYNC',
+  METHOD_READY: 'METHOD_READY',
+  METHOD_DESTROY: 'METHOD_DESTROY',
+  METHOD_TIMEOUT: 'METHOD_TIMEOUT'
+};
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -181,7 +198,7 @@ Object.defineProperty(exports, 'ServiceStub', {
   }
 });
 
-var _CustomEventService = __webpack_require__(3);
+var _CustomEventService = __webpack_require__(5);
 
 Object.defineProperty(exports, 'CustomEventService', {
   enumerable: true,
@@ -190,7 +207,7 @@ Object.defineProperty(exports, 'CustomEventService', {
   }
 });
 
-var _LocalStorageService = __webpack_require__(4);
+var _LocalStorageService = __webpack_require__(6);
 
 Object.defineProperty(exports, 'LocalStorageService', {
   enumerable: true,
@@ -199,7 +216,7 @@ Object.defineProperty(exports, 'LocalStorageService', {
   }
 });
 
-var _PostMessageService = __webpack_require__(5);
+var _PostMessageService = __webpack_require__(7);
 
 Object.defineProperty(exports, 'PostMessageService', {
   enumerable: true,
@@ -208,7 +225,7 @@ Object.defineProperty(exports, 'PostMessageService', {
   }
 });
 
-var _WKWebViewService = __webpack_require__(6);
+var _WKWebViewService = __webpack_require__(8);
 
 Object.defineProperty(exports, 'WKWebViewService', {
   enumerable: true,
@@ -218,7 +235,36 @@ Object.defineProperty(exports, 'WKWebViewService', {
 });
 
 /***/ }),
-/* 3 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Status = __webpack_require__(2);
+
+Object.defineProperty(exports, 'Status', {
+  enumerable: true,
+  get: function get() {
+    return _Status.Status;
+  }
+});
+
+var _Type = __webpack_require__(1);
+
+Object.defineProperty(exports, 'Type', {
+  enumerable: true,
+  get: function get() {
+    return _Type.Type;
+  }
+});
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -319,7 +365,7 @@ var CustomEventService = exports.CustomEventService = function (_ServiceStub) {
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -418,7 +464,7 @@ var LocalStorageService = exports.LocalStorageService = function (_ServiceStub) 
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -510,7 +556,7 @@ var PostMessageService = exports.PostMessageService = function (_ServiceStub) {
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -597,32 +643,9 @@ var WKWebViewService = exports.WKWebViewService = function (_ServiceStub) {
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Status = {
-  METHOD_NOT_FOUND: 'METHOD_NOT_FOUND',
-  METHOD_SUCCESS: 'METHOD_SUCCESS',
-  METHOD_ERROR: 'METHOD_ERROR',
-  METHOD_ASYNC: 'METHOD_ASYNC',
-  METHOD_READY: 'METHOD_READY',
-  METHOD_DESTROY: 'METHOD_DESTROY',
-  METHOD_TIMEOUT: 'METHOD_TIMEOUT'
-};
-
-exports.default = Status;
-
-/***/ }),
-/* 8 */,
 /* 9 */,
-/* 10 */
+/* 10 */,
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -633,15 +656,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Server = undefined;
 
-var _Status = __webpack_require__(7);
-
-var _Status2 = _interopRequireDefault(_Status);
+var _Status = __webpack_require__(2);
 
 var _Type = __webpack_require__(1);
-
-var _Type2 = _interopRequireDefault(_Type);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -664,7 +681,7 @@ var Server = exports.Server = function () {
     this._connectionEstablished = false;
     this._onReady = typeof options.onReady === 'function' ? options.onReady : null;
 
-    options.type = _Type2.default.CONSUMER;
+    options.type = _Type.Type.SERVER;
     options.receiveMessageCallback = this._receiveMessage.bind(this);
 
     this._serviceClass = options.service;
@@ -743,7 +760,7 @@ var Server = exports.Server = function () {
     // message with given id does not exist
     if (!this._methods[method]) {
       return this._sendError(id, {
-        status: _Status2.default.METHOD_NOT_FOUND,
+        status: _Status.Status.METHOD_NOT_FOUND,
         message: 'method with name ' + method + ' could not be found'
       });
     }
@@ -752,13 +769,13 @@ var Server = exports.Server = function () {
     var cb = {
       done: function done(data) {
         that._sendResult(id, {
-          status: _Status2.default.METHOD_SUCCESS,
+          status: _Status.Status.METHOD_SUCCESS,
           data: data
         });
       },
       error: function error(data) {
         that._sendResult(id, {
-          status: _Status2.default.METHOD_ERROR,
+          status: _Status.Status.METHOD_ERROR,
           data: data
         });
       }
@@ -769,7 +786,7 @@ var Server = exports.Server = function () {
       async: function async() {
         this.isAsync = true;
         that._sendResult(id, {
-          status: _Status2.default.METHOD_ASYNC
+          status: _Status.Status.METHOD_ASYNC
         });
         return cb;
       }
@@ -833,11 +850,11 @@ var Server = exports.Server = function () {
 }();
 
 /***/ }),
-/* 11 */,
 /* 12 */,
 /* 13 */,
 /* 14 */,
-/* 15 */
+/* 15 */,
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -847,7 +864,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Server = __webpack_require__(10);
+var _Server = __webpack_require__(11);
 
 Object.keys(_Server).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -859,7 +876,7 @@ Object.keys(_Server).forEach(function (key) {
   });
 });
 
-var _index = __webpack_require__(2);
+var _index = __webpack_require__(3);
 
 Object.keys(_index).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -867,6 +884,18 @@ Object.keys(_index).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _index[key];
+    }
+  });
+});
+
+var _index2 = __webpack_require__(4);
+
+Object.keys(_index2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _index2[key];
     }
   });
 });

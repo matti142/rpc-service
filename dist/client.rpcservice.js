@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 14);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -153,16 +153,33 @@ var ServiceStub = exports.ServiceStub = function () {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var Type = {
+var Type = exports.Type = {
   SERVER: 'SERVER',
   CLIENT: 'CLIENT'
 };
 
-exports.default = Type;
-
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var Status = exports.Status = {
+  METHOD_NOT_FOUND: 'METHOD_NOT_FOUND',
+  METHOD_SUCCESS: 'METHOD_SUCCESS',
+  METHOD_ERROR: 'METHOD_ERROR',
+  METHOD_ASYNC: 'METHOD_ASYNC',
+  METHOD_READY: 'METHOD_READY',
+  METHOD_DESTROY: 'METHOD_DESTROY',
+  METHOD_TIMEOUT: 'METHOD_TIMEOUT'
+};
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -181,7 +198,7 @@ Object.defineProperty(exports, 'ServiceStub', {
   }
 });
 
-var _CustomEventService = __webpack_require__(3);
+var _CustomEventService = __webpack_require__(5);
 
 Object.defineProperty(exports, 'CustomEventService', {
   enumerable: true,
@@ -190,7 +207,7 @@ Object.defineProperty(exports, 'CustomEventService', {
   }
 });
 
-var _LocalStorageService = __webpack_require__(4);
+var _LocalStorageService = __webpack_require__(6);
 
 Object.defineProperty(exports, 'LocalStorageService', {
   enumerable: true,
@@ -199,7 +216,7 @@ Object.defineProperty(exports, 'LocalStorageService', {
   }
 });
 
-var _PostMessageService = __webpack_require__(5);
+var _PostMessageService = __webpack_require__(7);
 
 Object.defineProperty(exports, 'PostMessageService', {
   enumerable: true,
@@ -208,7 +225,7 @@ Object.defineProperty(exports, 'PostMessageService', {
   }
 });
 
-var _WKWebViewService = __webpack_require__(6);
+var _WKWebViewService = __webpack_require__(8);
 
 Object.defineProperty(exports, 'WKWebViewService', {
   enumerable: true,
@@ -218,7 +235,36 @@ Object.defineProperty(exports, 'WKWebViewService', {
 });
 
 /***/ }),
-/* 3 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Status = __webpack_require__(2);
+
+Object.defineProperty(exports, 'Status', {
+  enumerable: true,
+  get: function get() {
+    return _Status.Status;
+  }
+});
+
+var _Type = __webpack_require__(1);
+
+Object.defineProperty(exports, 'Type', {
+  enumerable: true,
+  get: function get() {
+    return _Type.Type;
+  }
+});
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -319,7 +365,7 @@ var CustomEventService = exports.CustomEventService = function (_ServiceStub) {
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -418,7 +464,7 @@ var LocalStorageService = exports.LocalStorageService = function (_ServiceStub) 
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -510,7 +556,7 @@ var PostMessageService = exports.PostMessageService = function (_ServiceStub) {
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -597,30 +643,7 @@ var WKWebViewService = exports.WKWebViewService = function (_ServiceStub) {
 }(_ServiceStub2.ServiceStub);
 
 /***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var Status = {
-  METHOD_NOT_FOUND: 'METHOD_NOT_FOUND',
-  METHOD_SUCCESS: 'METHOD_SUCCESS',
-  METHOD_ERROR: 'METHOD_ERROR',
-  METHOD_ASYNC: 'METHOD_ASYNC',
-  METHOD_READY: 'METHOD_READY',
-  METHOD_DESTROY: 'METHOD_DESTROY',
-  METHOD_TIMEOUT: 'METHOD_TIMEOUT'
-};
-
-exports.default = Status;
-
-/***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {var require;/*!
@@ -759,7 +782,7 @@ function flush() {
 function attemptVertx() {
   try {
     var r = require;
-    var vertx = __webpack_require__(13);
+    var vertx = __webpack_require__(14);
     vertxNext = vertx.runOnLoop || vertx.runOnContext;
     return useVertxTimer();
   } catch (e) {
@@ -1780,10 +1803,10 @@ return Promise;
 
 })));
 //# sourceMappingURL=es6-promise.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(11), __webpack_require__(12)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(13)))
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1796,21 +1819,15 @@ exports.Client = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _Status = __webpack_require__(7);
-
-var _Status2 = _interopRequireDefault(_Status);
+var _Status = __webpack_require__(2);
 
 var _Type = __webpack_require__(1);
 
-var _Type2 = _interopRequireDefault(_Type);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _Promise2 = typeof Promise === 'undefined' ? __webpack_require__(8).Promise : Promise;
+var _Promise2 = typeof Promise === 'undefined' ? __webpack_require__(9).Promise : Promise;
 
-var _Promise = typeof _Promise2 === 'undefined' ? __webpack_require__(8).Promise : _Promise2;
+var _Promise = typeof _Promise2 === 'undefined' ? __webpack_require__(9).Promise : _Promise2;
 
 // static unique id counter
 var _msgIndex = 1;
@@ -1836,7 +1853,7 @@ var Client = exports.Client = function () {
       throw "missing option 'service' for service class";
     }
 
-    options.type = _Type2.default.PROVIDER;
+    options.type = _Type.Type.CLIENT;
     options.receiveMessageCallback = this._receiveMessage.bind(this);
     options.autoConnect = options.autoConnect !== false;
 
@@ -1949,11 +1966,11 @@ var Client = exports.Client = function () {
 
     // check success response
     if (result) {
-      if (result.status === _Status2.default.METHOD_SUCCESS) {
+      if (result.status === _Status.Status.METHOD_SUCCESS) {
         return msg.resolve(result.data);
       }
       // consumer responses with asynchronous method
-      else if (result.status === _Status2.default.METHOD_ASYNC) {
+      else if (result.status === _Status.Status.METHOD_ASYNC) {
           // reset timeout if exists
           if (msg.timeout) {
             this._setTimeout(id, msg.timeout);
@@ -2083,7 +2100,7 @@ var Client = exports.Client = function () {
     this._sentmsg[id].refTimeout = setTimeout(function () {
       if (_this3._sentmsg[id]) {
         _this3._sentmsg[id].reject({
-          status: _Status2.default.METHOD_TIMEOUT
+          status: _Status.Status.METHOD_TIMEOUT
         });
       }
     }, timeout);
@@ -2103,8 +2120,8 @@ var Client = exports.Client = function () {
 }();
 
 /***/ }),
-/* 10 */,
-/* 11 */
+/* 11 */,
+/* 12 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -2290,7 +2307,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2317,13 +2334,13 @@ module.exports = g;
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2333,7 +2350,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Client = __webpack_require__(9);
+var _Client = __webpack_require__(10);
 
 Object.keys(_Client).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -2345,7 +2362,7 @@ Object.keys(_Client).forEach(function (key) {
   });
 });
 
-var _index = __webpack_require__(2);
+var _index = __webpack_require__(3);
 
 Object.keys(_index).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -2353,6 +2370,18 @@ Object.keys(_index).forEach(function (key) {
     enumerable: true,
     get: function get() {
       return _index[key];
+    }
+  });
+});
+
+var _index2 = __webpack_require__(4);
+
+Object.keys(_index2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _index2[key];
     }
   });
 });

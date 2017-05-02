@@ -1,5 +1,5 @@
-import Status from '../util/Status';
-import Type from '../util/Type';
+import {Status} from '../util/Status';
+import {Type} from '../util/Type';
 
 // static unique id counter
 let _msgIndex = 1;
@@ -24,7 +24,7 @@ export class Client {
       throw "missing option 'service' for service class"
     }
 
-    options.type = Type.PROVIDER;
+    options.type = Type.CLIENT;
     options.receiveMessageCallback = this._receiveMessage.bind(this);
     options.autoConnect = options.autoConnect !== false;
 

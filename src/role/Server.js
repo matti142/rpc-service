@@ -1,5 +1,5 @@
-import Status from '../util/Status';
-import Type from '../util/Type';
+import {Status} from '../util/Status';
+import {Type} from '../util/Type';
 
 
 export class Server {
@@ -18,7 +18,7 @@ export class Server {
     this._connectionEstablished = false;
     this._onReady = typeof options.onReady === 'function' ? options.onReady : null;
 
-    options.type = Type.CONSUMER;
+    options.type = Type.SERVER;
     options.receiveMessageCallback = this._receiveMessage.bind(this);
 
     this._serviceClass = options.service;

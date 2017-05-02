@@ -1,5 +1,5 @@
 
-const Status = {
+export const Status = {
   METHOD_NOT_FOUND: 'METHOD_NOT_FOUND',
   METHOD_SUCCESS: 'METHOD_SUCCESS',
   METHOD_ERROR: 'METHOD_ERROR',
@@ -8,5 +8,3 @@ const Status = {
   METHOD_DESTROY: 'METHOD_DESTROY',
   METHOD_TIMEOUT: 'METHOD_TIMEOUT'
 };
-
-export default Status;
