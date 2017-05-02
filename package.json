@@ -1,6 +1,6 @@
 {
   "name": "rpc-service",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Remote Procedure Call between different endpoints within a browser",
   "author": {
     "name": "Matthias Hauch",

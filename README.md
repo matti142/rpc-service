@@ -317,6 +317,32 @@ new Client_or_Server({
 ### WKWebViewService
 under development - work in progress
 
+## Utils
+### Status
+The constants `Status` is an enum and contains all communication states. The following
+names will be used in error cases:
+```text
+  METHOD_NOT_FOUND: the method could not be found (invoked by client)
+  METHOD_ERROR: default error code, when the server function returns an error
+  METHOD_TIMEOUT: the server function needed too much time
+```
+Other states will be used internally (client-server-synchronization):
+```text
+  METHOD_SUCCESS: server function response was successfully
+  METHOD_ASYNC: server function is asynchronous, client should wait
+  METHOD_READY: unused
+  METHOD_DESTROY: unused
+```
+
+
+### Type
+`Type` is a constants to decide between the endpoint - server and client.
+```text
+  SERVER: class represents the server endpoint
+  CLIENT: class represents the client endpoint
+```
+More types are planned for future releases.
+
 ## Examples
 All examples have to be built with webpack before it can be tested. Files in `./examples`
 are source files and will be built to `./target`. Examples with cross-origin services
