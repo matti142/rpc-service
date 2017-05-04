@@ -1,4 +1,4 @@
-import Type from '../util/Type'
+import {Type} from '../util/Type'
 
 export class ServiceStub {
 

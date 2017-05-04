@@ -8,7 +8,7 @@ let client = new Client({
 
 let button = document.getElementById("sendAlert");
 button.addEventListener('click', e => {
-  provider
+  client
     .invoke('alert', {msg: 'Hello from iframe'})
     .then(function(data) {
       console.log("Success alert", data);
@@ -21,7 +21,7 @@ let asyncButton = document.getElementById("sendAsync");
 let title = asyncButton.textContent;
 
 asyncButton.addEventListener('click', e => {
-  provider
+  client
     .invoke('asyncAlert', {msg: 'Asynchronous hello from iframe'})
     .then(function() {
       asyncButton.innerHTML = title;
