@@ -4,10 +4,11 @@
  *
  * The bundle will be stored into the window object "RPCService"
  */
+const path = require("path");
 const webpack = require('webpack');
 const yargs = require('yargs');
 const argv = yargs.alias('p', 'prod').argv;
-const outputPath = argv.p ? "./dist/min" : "./dist";
+const outputPath = path.resolve(__dirname, argv.p ? "./dist/min" : "./dist");
 const output = argv.p ? "[name].rpcservice.min.js" : "[name].rpcservice.js";
 
 let config = {

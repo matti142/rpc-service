@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 15);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,10 +90,6 @@ exports.ServiceStub = undefined;
 
 var _Type = __webpack_require__(1);
 
-var _Type2 = _interopRequireDefault(_Type);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ServiceStub = exports.ServiceStub = function () {
@@ -105,11 +101,11 @@ var ServiceStub = exports.ServiceStub = function () {
   }
 
   ServiceStub.prototype.isClient = function isClient() {
-    return this._type === _Type2.default.CLIENT;
+    return this._type === _Type.Type.CLIENT;
   };
 
   ServiceStub.prototype.isServer = function isServer() {
-    return this._type === _Type2.default.SERVER;
+    return this._type === _Type.Type.SERVER;
   };
 
   /**
@@ -651,7 +647,7 @@ var WKWebViewService = exports.WKWebViewService = function (_ServiceStub) {
  * @copyright Copyright (c) 2014 Yehuda Katz, Tom Dale, Stefan Penner and contributors (Conversion to ES6 API by Jake Archibald)
  * @license   Licensed under MIT license
  *            See https://raw.githubusercontent.com/stefanpenner/es6-promise/master/LICENSE
- * @version   4.0.5
+ * @version   4.1.0
  */
 
 (function (global, factory) {
@@ -782,7 +778,7 @@ function flush() {
 function attemptVertx() {
   try {
     var r = require;
-    var vertx = __webpack_require__(14);
+    var vertx = __webpack_require__(16);
     vertxNext = vertx.runOnLoop || vertx.runOnContext;
     return useVertxTimer();
   } catch (e) {
@@ -959,6 +955,7 @@ function handleMaybeThenable(promise, maybeThenable, then$$) {
   } else {
     if (then$$ === GET_THEN_ERROR) {
       _reject(promise, GET_THEN_ERROR.error);
+      GET_THEN_ERROR.error = null;
     } else if (then$$ === undefined) {
       fulfill(promise, maybeThenable);
     } else if (isFunction(then$$)) {
@@ -1079,7 +1076,7 @@ function invokeCallback(settled, promise, callback, detail) {
     if (value === TRY_CATCH_ERROR) {
       failed = true;
       error = value.error;
-      value = null;
+      value.error = null;
     } else {
       succeeded = true;
     }
@@ -1803,7 +1800,8 @@ return Promise;
 
 })));
 //# sourceMappingURL=es6-promise.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12), __webpack_require__(13)))
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(15)))
 
 /***/ }),
 /* 10 */
@@ -1880,15 +1878,13 @@ var Client = exports.Client = function () {
     var _this = this;
 
     if (document.readyState !== 'complete') {
-      (function () {
-        var onComplete = function onComplete(e) {
-          if (document.readyState == "complete") {
-            document.removeEventListener("readystatechange", onComplete);
-            _this.connect(cb);
-          }
-        };
-        document.addEventListener("readystatechange", onComplete, false);
-      })();
+      var onComplete = function onComplete(e) {
+        if (document.readyState == "complete") {
+          document.removeEventListener("readystatechange", onComplete);
+          _this.connect(cb);
+        }
+      };
+      document.addEventListener("readystatechange", onComplete, false);
     } else {
       this.connect(cb);
     }
@@ -2122,6 +2118,54 @@ var Client = exports.Client = function () {
 /***/ }),
 /* 11 */,
 /* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Client = __webpack_require__(10);
+
+Object.keys(_Client).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _Client[key];
+    }
+  });
+});
+
+var _index = __webpack_require__(3);
+
+Object.keys(_index).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _index[key];
+    }
+  });
+});
+
+var _index2 = __webpack_require__(4);
+
+Object.keys(_index2).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _index2[key];
+    }
+  });
+});
+
+/***/ }),
+/* 13 */,
+/* 14 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -2294,6 +2338,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -2307,7 +2355,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2334,57 +2382,10 @@ module.exports = g;
 
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Client = __webpack_require__(10);
-
-Object.keys(_Client).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _Client[key];
-    }
-  });
-});
-
-var _index = __webpack_require__(3);
-
-Object.keys(_index).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _index[key];
-    }
-  });
-});
-
-var _index2 = __webpack_require__(4);
-
-Object.keys(_index2).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _index2[key];
-    }
-  });
-});
 
 /***/ })
 /******/ ]);

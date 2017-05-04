@@ -16,9 +16,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -90,10 +90,6 @@ exports.ServiceStub = undefined;
 
 var _Type = __webpack_require__(1);
 
-var _Type2 = _interopRequireDefault(_Type);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ServiceStub = exports.ServiceStub = function () {
@@ -105,11 +101,11 @@ var ServiceStub = exports.ServiceStub = function () {
   }
 
   ServiceStub.prototype.isClient = function isClient() {
-    return this._type === _Type2.default.CLIENT;
+    return this._type === _Type.Type.CLIENT;
   };
 
   ServiceStub.prototype.isServer = function isServer() {
-    return this._type === _Type2.default.SERVER;
+    return this._type === _Type.Type.SERVER;
   };
 
   /**
@@ -851,10 +847,7 @@ var Server = exports.Server = function () {
 
 /***/ }),
 /* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
