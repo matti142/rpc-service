@@ -37,7 +37,7 @@ const defaultConfig = {
   },
 
   output: {
-    path: "./target",
+    path: path.resolve(__dirname, "./target"),
     filename: "[name].bundle.js",
     libraryTarget: "umd"
   },
@@ -61,7 +61,7 @@ module.exports = function(env) {
 
   let config = [];
   function addConfig(name, conf) {
-    if (!env.example || env.example && env.example === name) {
+    if (!env || !env.example || env.example && env.example === name) {
       config.push(_.merge(_.cloneDeep(defaultConfig), conf));
     }
   }
@@ -86,7 +86,7 @@ module.exports = function(env) {
       })
     ],
     output: {
-      path: './target/examples/iframe'
+      path: path.resolve(__dirname, './target/examples/iframe')
     }
   });
 
@@ -110,7 +110,7 @@ module.exports = function(env) {
       })
     ],
     output: {
-      path: './target/examples/iframe-sameorigin'
+      path: path.resolve(__dirname, './target/examples/iframe-sameorigin')
     }
   });
 
@@ -134,7 +134,7 @@ module.exports = function(env) {
       })
     ],
     output: {
-      path: './target/examples/localstorage'
+      path: path.resolve(__dirname, './target/examples/localstorage')
     }
   });
 
@@ -158,7 +158,7 @@ module.exports = function(env) {
       })
     ],
     output: {
-      path: './target/examples/window'
+      path: path.resolve(__dirname, './target/examples/window')
     }
   });
 
